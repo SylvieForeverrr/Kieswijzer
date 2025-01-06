@@ -7,52 +7,25 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body {
-            background-color: #1E3A8A; /* Blauwe achtergrondkleur */
+            background-color: #001f3d; /* Donkerblauwe kleur */
             font-family: Arial, sans-serif;
             text-align: center;
-            margin: 0;
-            position: relative;
-            color: white; /* Witte tekstkleur */
+            margin: 20px;
         }
-
-        /* Gebogen lijn onderaan het scherm */
-        body::before, body::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            height: 80px; /* Hoogte van de lijn */
-            background-color: #228B22; /* Groene kleur voor de boog */
-            border-radius: 0 0 50% 50%; /* Gebogen lijn, alleen aan de onderkant */
-        }
-
-        /* De lijnen staan aan de onderkant van het scherm */
-        body::before {
-            left: 0;
-        }
-
-        body::after {
-            right: 0;
-        }
-
         h1 {
             font-size: 24px;
-            margin-top: 50px;
             margin-bottom: 20px;
         }
-
         #answerContainer button {
             margin: 10px;
             padding: 10px 20px;
             font-size: 16px;
             cursor: pointer;
         }
-
         #chartContainer {
             display: none;
             margin-top: 10px;
         }
-
         .chart-container {
             display: flex;
             justify-content: space-evenly;
@@ -61,13 +34,11 @@
             max-width: 1200px;
             margin: 0 auto;
         }
-
         .chart {
             flex: 1;
             max-width: 23%;
             height: 50%;
         }
-
         #questionContainer {
             margin-top: 30px;
         }
