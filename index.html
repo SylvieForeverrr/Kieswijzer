@@ -7,11 +7,11 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body {
-            background-color: #001f3d; /* Donkerblauwe kleur */
+            background-color: #ffcc00; /* Gele kleur als achtergrond */
             font-family: Arial, sans-serif;
             text-align: center;
             margin: 20px;
-            position: relative; /* Nodig om de pseudo-elementen te plaatsen */
+            position: relative;
             color: white; /* Witte tekstkleur */
         }
 
@@ -21,7 +21,7 @@
             top: 0;
             bottom: 0;
             width: 8px; /* Grotere breedte van de lijn */
-            background: linear-gradient(to bottom, #ffffff 0%, #001f3d 50%, #ffffff 100%);
+            background: linear-gradient(to bottom, #ffffff 0%, #ffcc00 50%, #ffffff 100%);
             border-radius: 50%; /* Maakt de lijnen gebogen */
         }
 
@@ -35,8 +35,9 @@
             height: 30%; /* Grotere lijn aan de rechterzijde */
         }
 
+        /* Animatie voor beweging van de lijnen */
         body::before, body::after {
-            animation: curveAnimation 3s ease-in-out infinite; /* Zorgt voor beweging van de lijnen */
+            animation: moveLines 5s infinite alternate ease-in-out;
         }
 
         body::before {
@@ -44,15 +45,18 @@
         }
 
         body::after {
-            animation-delay: 1.5s; /* Verschillende animatietijd om het visueel aantrekkelijk te maken */
+            animation-delay: 2.5s; /* Verschillende animatietijd om het visueel aantrekkelijk te maken */
         }
 
-        @keyframes curveAnimation {
-            0%, 100% {
-                transform: translateY(0); /* De lijn begint op normale positie */
+        @keyframes moveLines {
+            0% {
+                transform: translateX(0);
             }
             50% {
-                transform: translateY(100px); /* Lijn beweegt naar beneden voor de boog */
+                transform: translateX(100vw); /* Lijn beweegt naar rechts */
+            }
+            100% {
+                transform: translateX(0); /* Lijn beweegt terug naar de oorspronkelijke positie */
             }
         }
 
