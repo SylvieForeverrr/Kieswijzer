@@ -7,10 +7,10 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body {
-            background-color: #ffcc00; /* Gele kleur als achtergrond */
+            background-color: #ffcc00; /* Gele achtergrondkleur */
             font-family: Arial, sans-serif;
             text-align: center;
-            margin: 20px;
+            margin: 0;
             position: relative;
             color: white; /* Witte tekstkleur */
         }
@@ -20,48 +20,24 @@
             position: absolute;
             top: 0;
             bottom: 0;
-            width: 8px; /* Grotere breedte van de lijn */
-            background: linear-gradient(to bottom, #ffffff 0%, #ffcc00 50%, #ffffff 100%);
-            border-radius: 50%; /* Maakt de lijnen gebogen */
+            width: 100px; /* Breedte van de lijn */
+            background-color: #228B22; /* Groene kleur */
+            border-radius: 50%; /* Boogvorm creëren */
         }
 
         body::before {
-            left: 0;
-            height: 30%; /* Grotere lijn aan de linkerzijde */
+            left: -50px; /* Plaats de lijn net links van het scherm */
+            height: 50%; /* Dit zorgt ervoor dat de lijnen niet te groot zijn */
         }
 
         body::after {
-            right: 0;
-            height: 30%; /* Grotere lijn aan de rechterzijde */
-        }
-
-        /* Animatie voor beweging van de lijnen */
-        body::before, body::after {
-            animation: moveLines 5s infinite alternate ease-in-out;
-        }
-
-        body::before {
-            animation-delay: 0s;
-        }
-
-        body::after {
-            animation-delay: 2.5s; /* Verschillende animatietijd om het visueel aantrekkelijk te maken */
-        }
-
-        @keyframes moveLines {
-            0% {
-                transform: translateX(0);
-            }
-            50% {
-                transform: translateX(100vw); /* Lijn beweegt naar rechts */
-            }
-            100% {
-                transform: translateX(0); /* Lijn beweegt terug naar de oorspronkelijke positie */
-            }
+            right: -50px; /* Plaats de lijn net rechts van het scherm */
+            height: 50%; /* Dit zorgt ervoor dat de lijnen niet te groot zijn */
         }
 
         h1 {
             font-size: 24px;
+            margin-top: 50px;
             margin-bottom: 20px;
         }
 
