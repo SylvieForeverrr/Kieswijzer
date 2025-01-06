@@ -12,6 +12,7 @@
             text-align: center;
             margin: 20px;
             position: relative; /* Nodig om de pseudo-elementen te plaatsen */
+            color: white; /* Witte tekstkleur */
         }
 
         body::before, body::after {
@@ -19,16 +20,40 @@
             position: absolute;
             top: 0;
             bottom: 0;
-            width: 5px; /* Breedte van de lijn */
-            background: linear-gradient(to bottom, #ffffff 0%, #001f3d 50%, #ffffff 100%); /* Lijngradient */
+            width: 8px; /* Grotere breedte van de lijn */
+            background: linear-gradient(to bottom, #ffffff 0%, #001f3d 50%, #ffffff 100%);
+            border-radius: 50%; /* Maakt de lijnen gebogen */
         }
 
         body::before {
             left: 0;
+            height: 30%; /* Grotere lijn aan de linkerzijde */
         }
 
         body::after {
             right: 0;
+            height: 30%; /* Grotere lijn aan de rechterzijde */
+        }
+
+        body::before, body::after {
+            animation: curveAnimation 3s ease-in-out infinite; /* Zorgt voor beweging van de lijnen */
+        }
+
+        body::before {
+            animation-delay: 0s;
+        }
+
+        body::after {
+            animation-delay: 1.5s; /* Verschillende animatietijd om het visueel aantrekkelijk te maken */
+        }
+
+        @keyframes curveAnimation {
+            0%, 100% {
+                transform: translateY(0); /* De lijn begint op normale positie */
+            }
+            50% {
+                transform: translateY(100px); /* Lijn beweegt naar beneden voor de boog */
+            }
         }
 
         h1 {
