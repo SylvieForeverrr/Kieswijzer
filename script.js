@@ -215,6 +215,20 @@ function displayResults() {
         return { module, score, percentage };
     });
 
+    // Zoek de module(s) met de hoogste score
+    const maxScore = Math.max(...chartData.map(data => data.score));
+    const topModules = chartData
+        .filter(data => data.score === maxScore && maxScore > 0)
+        .map(data => data.module);
+
+    // Voeg de samenvattende tekst toe
+    const summaryText = document.getElementById("summaryText");
+    if (topModules.length > 0) {
+        summaryText.textContent = `Uit deze kieswijzer is voortgekomen dat module${topModules.length > 1 ? 's' : ''} ${topModules.join(' en ')} het meeste bij u past.`;
+    } else {
+        summaryText.textContent = "Er is geen duidelijke voorkeur voor een module vastgesteld.";
+    }
+
     // Maak de grafieken
     chartData.forEach((data, index) => {
         const ctx = document.getElementById(`chart${index + 1}`).getContext("2d");
