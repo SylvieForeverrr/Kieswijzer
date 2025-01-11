@@ -11,12 +11,12 @@
             font-family: Arial, sans-serif;
             text-align: center;
             margin: 20px;
-            color: white;
+            color: white; /* Tekstkleur wit */
         }
         h1 {
             font-size: 24px;
             margin-bottom: 20px;
-            color: white;
+            color: white; /* H1 tekstkleur wit */
         }
         #answerContainer button {
             margin: 10px;
@@ -44,6 +44,12 @@
         #questionContainer {
             margin-top: 30px;
         }
+        #summaryText {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white; /* Samenvattende tekst wit */
+        }
     </style>
 </head>
 <body>
@@ -56,6 +62,7 @@
             <canvas id="chart3" class="chart"></canvas>
             <canvas id="chart4" class="chart"></canvas>
         </div>
+        <p id="summaryText"></p> <!-- Toegevoegd voor samenvattende tekst -->
     </div>
     <div id="questionContainer">
         <p id="questionText"></p>
