@@ -26,7 +26,7 @@
         }
         #chartContainer {
             display: none;
-            margin-top: 10px;
+            margin-top: 20px;
         }
         .chart-container {
             display: flex;
@@ -45,28 +45,30 @@
             margin-top: 30px;
         }
         #summaryText {
-            margin-top: 20px;
+            margin-top: 10px;
+            margin-bottom: 20px; /* Ruimte tussen tekst en grafieken */
             font-size: 18px;
             font-weight: bold;
             color: white; /* Samenvattende tekst wit */
+            text-align: center;
         }
     </style>
 </head>
 <body>
     <h1>Kieswijzer Modules Lexgen AI</h1>
+    <div id="questionContainer">
+        <p id="questionText"></p>
+        <div id="answerContainer"></div>
+    </div>
     <div id="chartContainer">
         <h2>Resultaten</h2>
+        <p id="summaryText"></p> <!-- Samenvattende tekst boven de grafieken -->
         <div class="chart-container">
             <canvas id="chart1" class="chart"></canvas>
             <canvas id="chart2" class="chart"></canvas>
             <canvas id="chart3" class="chart"></canvas>
             <canvas id="chart4" class="chart"></canvas>
         </div>
-        <p id="summaryText"></p> <!-- Toegevoegd voor samenvattende tekst -->
-    </div>
-    <div id="questionContainer">
-        <p id="questionText"></p>
-        <div id="answerContainer"></div>
     </div>
     <script src="script.js"></script>
 </body>
