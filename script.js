@@ -224,7 +224,7 @@ function displayResults() {
     // Voeg de samenvattende tekst toe
     const summaryText = document.getElementById("summaryText");
     if (topModules.length > 0) {
-        summaryText.textContent = `Uit deze kieswijzer is voortgekomen dat module${topModules.length > 1 ? 's' : ''} ${topModules.join(' en ')} het meeste bij u past.`;
+        summaryText.textContent = `Uit deze kieswijzer is voortgekomen dat {topModules.length > 1 ? 's' : ''} ${topModules.join(' en ')} het meest bij u past.`;
     } else {
         summaryText.textContent = "Er is geen duidelijke voorkeur voor een module vastgesteld.";
     }
