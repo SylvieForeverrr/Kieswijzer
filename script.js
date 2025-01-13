@@ -1,4 +1,4 @@
-// Vragenlijst en modules
+        // Vragenlijst en modules
 const questions = [
     {
         question: "Wat is uw belangrijkste reden om AI te overwegen?",
@@ -154,115 +154,107 @@ const questions = [
     }
 ];
 
-// Modules en hun scores
-const modules = {
-    "Module 1: AI-Research": 0,
-    "Module 2: AI-Analyse": 0,
-    "Module 3: Document Generatie": 0,
-    "Module 4: AI-Assistent": 0
-};
+        const modules = {
+            "Module 1: AI-Research": 0,
+            "Module 2: AI-Analyse": 0,
+            "Module 3: Document Generatie": 0,
+            "Module 4: AI-Assistent": 0
+        };
 
-// Vraagweergave
-let currentQuestionIndex = 0;
-const questionText = document.getElementById("questionText");
-const answerContainer = document.getElementById("answerContainer");
-const chartContainer = document.getElementById("chartContainer");
-const questionContainer = document.getElementById("questionContainer");
+        let currentQuestionIndex = 0;
+        const questionText = document.getElementById("questionText");
+        const answerContainer = document.getElementById("answerContainer");
+        const chartContainer = document.getElementById("chartContainer");
+        const questionContainer = document.getElementById("questionContainer");
 
-function showQuestion() {
-    if (currentQuestionIndex < questions.length) {
-        const currentQuestion = questions[currentQuestionIndex];
-        questionText.textContent = currentQuestion.question;
-        answerContainer.innerHTML = "";
+        function showQuestion() {
+            if (currentQuestionIndex < questions.length) {
+                const currentQuestion = questions[currentQuestionIndex];
+                questionText.textContent = currentQuestion.question;
+                answerContainer.innerHTML = "";
 
-        currentQuestion.answers.forEach(answer => {
-            const button = document.createElement("button");
-            button.textContent = answer.text;
-            button.onclick = () => recordAnswer(answer);
-            answerContainer.appendChild(button);
-        });
-    } else {
-        displayResults();
-    }
-}
+                currentQuestion.answers.forEach(answer => {
+                    const button = document.createElement("button");
+                    button.textContent = answer.text;
+                    button.onclick = () => recordAnswer(answer);
+                    answerContainer.appendChild(button);
+                });
+            } else {
+                displayResults();
+            }
+        }
 
-function recordAnswer(answer) {
-    if (answer.module) {
-        modules[answer.module] += answer.score;
-    }
-    if (answer.modules) {
-        answer.modules.forEach(module => {
-            modules[module] += answer.score;
-        });
-    }
-    currentQuestionIndex++;
-    showQuestion();
-}
+        function recordAnswer(answer) {
+            if (answer.module) {
+                modules[answer.module] += answer.score;
+            }
+            if (answer.modules) {
+                answer.modules.forEach(module => {
+                    modules[module] += answer.score;
+                });
+            }
+            currentQuestionIndex++;
+            showQuestion();
+        }
 
-function displayResults() {
-    // Verberg de vragen en antwoorden
-    questionContainer.style.display = "none";
+        function displayResults() {
+            questionContainer.style.display = "none";
+            chartContainer.style.display = "block";
 
-    // Toon de grafieken
-    chartContainer.style.display = "block";
-    const moduleNames = Object.keys(modules);
-    const totalScore = 10; // Maximaal score per module
+            const moduleNames = Object.keys(modules);
+            const totalScore = 10; 
 
-    // Maak een array van de scores en percentages
-    const chartData = moduleNames.map(module => {
-        const score = modules[module];
-        const percentage = (score / totalScore) * 100;
-        return { module, score, percentage };
-    });
+            const chartData = moduleNames.map(module => {
+                const score = modules[module];
+                const percentage = (score / totalScore) * 100;
+                return { module, score, percentage };
+            });
 
-    // Zoek de module(s) met de hoogste score
-    const maxScore = Math.max(...chartData.map(data => data.score));
-    const topModules = chartData
-        .filter(data => data.score === maxScore && maxScore > 0)
-        .map(data => data.module);
+            const maxScore = Math.max(...chartData.map(data => data.score));
+            const topModules = chartData
+                .filter(data => data.score === maxScore && maxScore > 0)
+                .map(data => data.module);
 
-    // Voeg de samenvattende tekst toe
-    const summaryText = document.getElementById("summaryText");
-    if (topModules.length > 0) {
-        summaryText.textContent = Uit deze kieswijzer is voortgekomen dat ${topModules.length > 1 ? 's' : ''} ${topModules.join(' en ')} het meest bij u past.;
-    } else {
-        summaryText.textContent = "Er is geen duidelijke voorkeur voor een module vastgesteld.";
-    }
+            const summaryText = document.getElementById("summaryText");
+            if (topModules.length > 0) {
+                summaryText.textContent = `Uit deze kieswijzer is voortgekomen dat ${topModules.join(' en ')} het meest bij u past.`;
+            } else {
+                summaryText.textContent = "Er is geen duidelijke voorkeur voor een module vastgesteld.";
+            }
 
-    // Maak de grafieken
-    chartData.forEach((data, index) => {
-        const ctx = document.getElementById(chart${index + 1}).getContext("2d");
+            chartData.forEach((data, index) => {
+                const ctx = document.getElementById(`chart${index + 1}`).getContext("2d");
 
-        new Chart(ctx, {
-            type: "doughnut",
-            data: {
-                labels: [${data.module} - ${data.percentage.toFixed(1)}%, "Resterend"],
-                datasets: [
-                    {
-                        data: [data.score, totalScore - data.score],
-                        backgroundColor: ["#36A2EB", "#CCCCCC"]
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        display: true,
-                        position: "bottom"
+                new Chart(ctx, {
+                    type: "doughnut",
+                    data: {
+                        labels: [`${data.module} - ${data.percentage.toFixed(1)}%`, "Resterend"],
+                        datasets: [
+                            {
+                                data: [data.score, totalScore - data.score],
+                                backgroundColor: ["#36A2EB", "#CCCCCC"]
+                            }
+                        ]
                     },
-                    tooltip: {
-                        callbacks: {
-                            label: function(tooltipItem) {
-                                const percentage = ((tooltipItem.raw / totalScore) * 100).toFixed(1);
-                                return ${tooltipItem.label}: ${percentage}%;
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                display: true,
+                                position: "bottom"
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(tooltipItem) {
+                                        const percentage = ((tooltipItem.raw / totalScore) * 100).toFixed(1);
+                                        return `${tooltipItem.label}: ${percentage}%`;
+                                    }
+                                }
                             }
                         }
                     }
-                }
-            }
-        });
-    });
-}
+                });
+            });
+        }
 
-showQuestion();
+        showQuestion();
